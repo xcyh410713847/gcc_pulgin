@@ -19,7 +19,7 @@ int plugin_is_GPL_compatible;
 
 int plugin_init(struct plugin_name_args *plugin_info, struct plugin_gcc_version *version)
 {
-    fprintf(stderr, "Skywalker GCC Plugin loaded\n");
+    skywalker_plugin.Help();
 
     return 0;
 }

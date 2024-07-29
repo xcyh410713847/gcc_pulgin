@@ -8,6 +8,28 @@
 #ifndef __PLUGIN_H__
 #define __PLUGIN_H__
 
+#include <stdio.h>
+
+/**
+ * 插件打印 DEBUG 信息
+ */
+#define SkywalkerPlugin_Debug(str) printf("[SkywalkerPlugin] [DEBUG     ] %s\n", str)
+
+/**
+ * 插件打印 INFO 信息
+ */
+#define SkywalkerPlugin_Info(str) printf("[SkywalkerPlugin] [INFO      ] %s\n", str)
+
+/**
+ * 插件打印 WARNING 信息
+ */
+#define SkywalkerPlugin_Warning(str) printf("[SkywalkerPlugin] [WARNING   ] %s\n", str)
+
+/**
+ * 插件打印 ERROR 信息
+ */
+#define SkywalkerPlugin_Error(str) printf("[SkywalkerPlugin] [ERROR     ] %s\n", str)
+
 class SkywalkerPlugin
 {
 public:

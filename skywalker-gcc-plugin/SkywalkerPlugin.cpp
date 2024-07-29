@@ -11,12 +11,18 @@ SkywalkerPlugin skywalker_plugin;
 
 SkywalkerPlugin::SkywalkerPlugin()
 {
+    SkywalkerPlugin_Debug("SkywalkerPlugin Launch");
 }
 
 SkywalkerPlugin::~SkywalkerPlugin()
 {
+    SkywalkerPlugin_Debug("SkywalkerPlugin Exit");
 }
 
 void SkywalkerPlugin::Help()
 {
+    SkywalkerPlugin_Debug("Test");
+    SkywalkerPlugin_Info("Test");
+    SkywalkerPlugin_Warning("Test");
+    SkywalkerPlugin_Error("Test");
 }
