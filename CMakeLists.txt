@@ -5,6 +5,10 @@
 # 功能: CMakeLists.txt
 # #########################################################################
 
+cmake_minimum_required(VERSION 3.5)
+
+project(skywalkerPlugin)
+
 add_subdirectory(skywalker-gcc-plugin)
 
 add_subdirectory(example)

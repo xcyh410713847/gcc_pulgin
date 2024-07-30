@@ -5,7 +5,7 @@
 # 功能: 使用插件编译的例子
 # #########################################################################
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 set(example_Name "skywalker-plugin-example")
 

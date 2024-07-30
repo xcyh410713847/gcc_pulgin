@@ -8,27 +8,32 @@
 #ifndef __PLUGIN_H__
 #define __PLUGIN_H__
 
-#include <stdio.h>
+#include <cstdarg>
+#include <cstdio>
+
+#include <gcc-plugin.h>
+#include <plugin-version.h>
+#include <tree.h>
+#include <coretypes.h>
+#include <diagnostic.h>
+#include <vec.h>
+#include <function.h>
 
 /**
- * 插件打印 DEBUG 信息
+ * 插件信息
  */
-#define SkywalkerPlugin_Debug(str) printf("[SkywalkerPlugin] [DEBUG     ] %s\n", str)
+struct SSkywalkerPluginInfo
+{
+    /**
+     * 插件名称
+     */
+    const char *PluginName;
 
-/**
- * 插件打印 INFO 信息
- */
-#define SkywalkerPlugin_Info(str) printf("[SkywalkerPlugin] [INFO      ] %s\n", str)
-
-/**
- * 插件打印 WARNING 信息
- */
-#define SkywalkerPlugin_Warning(str) printf("[SkywalkerPlugin] [WARNING   ] %s\n", str)
-
-/**
- * 插件打印 ERROR 信息
- */
-#define SkywalkerPlugin_Error(str) printf("[SkywalkerPlugin] [ERROR     ] %s\n", str)
+    /**
+     * 插件版本
+     */
+    const char *PluginVersion;
+};
 
 class SkywalkerPlugin
 {
@@ -36,7 +41,47 @@ public:
     SkywalkerPlugin();
     virtual ~SkywalkerPlugin();
 
+    /**
+     * 获取插件名称
+     */
+    const char *GetPluginName() const { return PluginInfo.PluginName; }
+
+    /**
+     * 获取插件版本
+     */
+    const char *GetPluginVersion() const { return PluginInfo.PluginVersion; }
+
+#pragma region Log
+
+    /**
+     * Log Debug
+    */
+    void Debug(const char *format, ...);
+
+    /**
+     * Log Info
+    */
+    void Info(const char *format, ...);
+
+    /**
+     * Log Warning
+    */
+    void Warning(const char *format, ...);
+
+    /**
+     * Log Error
+    */
+    void Error(const char *format, ...);
+
+#pragma endregion Log
+
+    /**
+     * 获取插件帮助
+     */
     void Help();
+
+public:
+    static SSkywalkerPluginInfo PluginInfo;
 };
 
 extern "C" SkywalkerPlugin skywalker_plugin;

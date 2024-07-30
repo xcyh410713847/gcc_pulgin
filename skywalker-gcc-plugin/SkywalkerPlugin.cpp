@@ -9,20 +9,131 @@
 
 SkywalkerPlugin skywalker_plugin;
 
+/**
+ * 插件信息
+ */
+SSkywalkerPluginInfo SkywalkerPlugin::PluginInfo = {
+	/**
+	 * 插件名称
+	 */
+	"SkywalkerPlugin",
+
+	/**
+	 * 插件版本
+	 */
+	"1.0.0",
+};
+
 SkywalkerPlugin::SkywalkerPlugin()
 {
-    SkywalkerPlugin_Debug("SkywalkerPlugin Launch");
+	Info("Skywalker GCC Plugin Version: %s", skywalker_plugin.GetPluginVersion());
 }
 
 SkywalkerPlugin::~SkywalkerPlugin()
 {
-    SkywalkerPlugin_Debug("SkywalkerPlugin Exit");
 }
+
+#pragma region Log
+
+void SkywalkerPlugin::Debug(const char *format, ...)
+{
+	va_list args;
+	va_start(args, format);
+
+	// 获取格式化后的信息所需的总长度
+	int len = std::vsnprintf(nullptr, 0, format, args);
+	va_end(args);
+
+	// 重新启动 var args, 因为长度计算后需要重置
+	va_start(args, format);
+
+	// 分配一个足够大的缓冲区
+	char *message = new char[len + 1];
+	std::vsnprintf(message, len + 1, format, args);
+	va_end(args);
+
+	// 打印调试信息
+	printf("[%s] [DEBUG     ] %s\n", GetPluginName(), message);
+
+	// 清理缓冲区
+	delete[] message;
+}
+
+void SkywalkerPlugin::Info(const char *format, ...)
+{
+	va_list args;
+	va_start(args, format);
+
+	// 获取格式化后的信息所需的总长度
+	int len = std::vsnprintf(nullptr, 0, format, args);
+	va_end(args);
+
+	// 重新启动 var args, 因为长度计算后需要重置
+	va_start(args, format);
+
+	// 分配一个足够大的缓冲区
+	char *message = new char[len + 1];
+	std::vsnprintf(message, len + 1, format, args);
+	va_end(args);
+
+	// 打印信息
+	printf("[%s] [INFO      ] %s\n", GetPluginName(), message);
+
+	// 清理缓冲区
+	delete[] message;
+}
+
+void SkywalkerPlugin::Warning(const char *format, ...)
+{
+	va_list args;
+	va_start(args, format);
+
+	// 获取格式化后的信息所需的总长度
+	int len = std::vsnprintf(nullptr, 0, format, args);
+	va_end(args);
+
+	// 重新启动 var args, 因为长度计算后需要重置
+	va_start(args, format);
+
+	// 分配一个足够大的缓冲区
+	char *message = new char[len + 1];
+	std::vsnprintf(message, len + 1, format, args);
+	va_end(args);
+
+	// 打印警告信息
+	printf("[%s] [WARNING   ] %s\n", GetPluginName(), message);
+
+	// 清理缓冲区
+	delete[] message;
+}
+
+void SkywalkerPlugin::Error(const char *format, ...)
+{
+	va_list args;
+	va_start(args, format);
+
+	// 获取格式化后的信息所需的总长度
+	int len = std::vsnprintf(nullptr, 0, format, args);
+	va_end(args);
+
+	// 重新启动 var args, 因为长度计算后需要重置
+	va_start(args, format);
+
+	// 分配一个足够大的缓冲区
+	char *message = new char[len + 1];
+	std::vsnprintf(message, len + 1, format, args);
+	va_end(args);
+
+	// 打印错误信息
+	printf("[%s] [ERROR     ] %s\n", GetPluginName(), message);
+
+	// 清理缓冲区
+	delete[] message;
+}
+
+#pragma endregion Log
 
 void SkywalkerPlugin::Help()
 {
-    SkywalkerPlugin_Debug("Test");
-    SkywalkerPlugin_Info("Test");
-    SkywalkerPlugin_Warning("Test");
-    SkywalkerPlugin_Error("Test");
+	Info("SkywalkerPlugin Help:");
 }
