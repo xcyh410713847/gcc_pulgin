@@ -1,9 +1,10 @@
 ﻿/*************************************************************************
-**文件: skywalker-gcc-plugin/plugin-ability/PluginAbility_FunctionCount.cpp
+**文件: skywalker-gcc-plugin/plugin-ability/function-count/PluginAbility_FunctionCount.cpp
 **作者: shyfan
-**日期: 2024/07/30 17:37:08
+**日期: 2024/08/12 15:59:00
 **功能: 函数计数插件能力
 *************************************************************************/
+
 
 #include "PluginAbility_FunctionCount.h"
 
