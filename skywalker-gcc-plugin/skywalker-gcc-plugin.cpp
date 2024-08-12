@@ -7,6 +7,9 @@
 
 #include "SkywalkerPlugin.h"
 
+#include "IPluginAbility.h"
+#include "PluginAbility_FunctionCount.h"
+
 int plugin_is_GPL_compatible;
 
 /**
@@ -29,6 +32,8 @@ static bool version_check(struct plugin_gcc_version *gcc_version,
  */
 int plugin_init(struct plugin_name_args *plugin_info, struct plugin_gcc_version *version)
 {
+    skywalker_plugin.Info("Plugin Init");
+
     if (!version_check(version, &gcc_version))
     {
         skywalker_plugin.Error("GCC版本不匹配， plugin compiled by gcc %s and used by %s", version->basever, gcc_version.basever);
@@ -43,6 +48,9 @@ int plugin_init(struct plugin_name_args *plugin_info, struct plugin_gcc_version 
             skywalker_plugin.Help();
         }
     }
+
+    // 注册插件能力
+    skywalker_plugin.RegisterPluginAbility<PluginAbility_FunctionCount>();
 
     return 0;
 }
