@@ -8,7 +8,7 @@
 #include "SkywalkerPlugin.h"
 
 #include "IPluginAbility.h"
-#include "PluginAbility_FunctionCount.h"
+#include "function-count/PluginAbility_FunctionCount.h"
 
 int plugin_is_GPL_compatible;
 

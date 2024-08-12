@@ -37,10 +37,12 @@ file(GLOB plugin_Source
     # cpp
     *.cpp
     ./*/*.cpp
+    ./*/*/*.cpp
 
     # h
     *.h
     ./*/*.h
+    ./*/*/*.h
 )
 
 # 添加共享库即插件
