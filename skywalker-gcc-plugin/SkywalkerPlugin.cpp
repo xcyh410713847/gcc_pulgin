@@ -31,6 +31,18 @@ SkywalkerPlugin::SkywalkerPlugin()
 
 SkywalkerPlugin::~SkywalkerPlugin()
 {
+	// 释放插件能力
+	for (auto iter = PluginAbilityMap.begin(); iter != PluginAbilityMap.end(); iter++)
+	{
+		// 反注册插件能力
+		iter->second->UnRegister();
+
+		// 释放插件能力
+		iter->second->Release();
+	}
+
+	// 清空插件能力列表
+	PluginAbilityMap.clear();
 }
 
 #pragma region Log

@@ -17,6 +17,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC") # 设置为位置独立代码
 
+# 宏开关
+option(ENABLE_PLUGIN_CALLBACK_TEST "Enable plugin callback test" ON)
+
+# 宏定义
+if(ENABLE_PLUGIN_CALLBACK_TEST)
+    add_definitions(-DENABLE_PLUGIN_CALLBACK_TEST)
+endif()
+
 # 查找 GCC 插件头文件路径
 find_path(GCC_PLUGIN_INCLUDE_DIR NAMES gcc-plugin.h
     PATHS

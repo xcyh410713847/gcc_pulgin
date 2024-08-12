@@ -34,12 +34,11 @@ PluginAbility_FunctionCount::~PluginAbility_FunctionCount()
 void PluginAbility_FunctionCount::OnFunctionCount()
 {
     FunctionCount++;
-    skywalker_plugin.Debug("FunctionCount: %d", FunctionCount);
 }
 
 void PluginAbility_FunctionCount::Register()
 {
-    skywalker_plugin.Info("PluginAbility_FunctionCount::Register");
+    skywalker_plugin.Debug("PluginAbility_FunctionCount::Register");
 
     // 注册事件
     register_callback(skywalker_plugin.GetPluginName(), PLUGIN_ALL_PASSES_START, (plugin_callback_func)Event_PLUGIN_ALL_PASSES_START, nullptr);
@@ -47,7 +46,7 @@ void PluginAbility_FunctionCount::Register()
 
 void PluginAbility_FunctionCount::UnRegister()
 {
-    skywalker_plugin.Info("PluginAbility_FunctionCount::UnRegister");
+    skywalker_plugin.Debug("PluginAbility_FunctionCount::UnRegister");
 
     // 反注册事件
     unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_ALL_PASSES_START);
@@ -55,7 +54,7 @@ void PluginAbility_FunctionCount::UnRegister()
 
 void PluginAbility_FunctionCount::Release()
 {
-    skywalker_plugin.Info("PluginAbility_FunctionCount::Release");
+    skywalker_plugin.Debug("PluginAbility_FunctionCount::Release");
 
     delete this;
 }

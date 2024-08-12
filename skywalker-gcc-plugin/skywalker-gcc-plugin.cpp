@@ -10,6 +10,10 @@
 #include "IPluginAbility.h"
 #include "function-count/PluginAbility_FunctionCount.h"
 
+#ifdef ENABLE_PLUGIN_CALLBACK_TEST
+#include "plugin-ability/plugin-callback-test/PluginAbility_PluginCallbackTest.h"
+#endif
+
 int plugin_is_GPL_compatible;
 
 /**
@@ -32,7 +36,7 @@ static bool version_check(struct plugin_gcc_version *gcc_version,
  */
 int plugin_init(struct plugin_name_args *plugin_info, struct plugin_gcc_version *version)
 {
-    skywalker_plugin.Info("Plugin Init");
+    skywalker_plugin.Debug("Plugin Init");
 
     if (!version_check(version, &gcc_version))
     {
@@ -51,6 +55,10 @@ int plugin_init(struct plugin_name_args *plugin_info, struct plugin_gcc_version 
 
     // 注册插件能力
     skywalker_plugin.RegisterPluginAbility<PluginAbility_FunctionCount>();
+
+#ifdef ENABLE_PLUGIN_CALLBACK_TEST
+    skywalker_plugin.RegisterPluginAbility<PluginAbility_PluginCallbackTest>();
+#endif
 
     return 0;
 }
