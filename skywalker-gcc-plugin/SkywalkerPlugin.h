@@ -16,10 +16,6 @@
 #include <gcc-plugin.h>
 #include <plugin-version.h>
 #include <tree.h>
-#include <coretypes.h>
-#include <diagnostic.h>
-#include <vec.h>
-#include <function.h>
 
 #include "IPluginAbility.h"
 

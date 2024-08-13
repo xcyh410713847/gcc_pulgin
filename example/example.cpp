@@ -3,6 +3,7 @@
     return;
 }
 
+[[attribute_test]]
 int Test(bool b)
 {
     return 0;

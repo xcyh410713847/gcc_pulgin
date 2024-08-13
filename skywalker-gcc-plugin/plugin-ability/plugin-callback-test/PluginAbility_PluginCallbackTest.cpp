@@ -191,11 +191,23 @@ static void Event_PLUGIN_REGISTER_GGC_ROOTS(void *gcc_data, void *user_data)
 }
 
 /**
+ * 属性回调函数
+ */
+static tree Attribute_Handler(tree *node, tree name, tree args, int flags, bool *no_add_attrs)
+{
+    skywalker_plugin.Debug("Attribute_Handler");
+
+    *no_add_attrs = true;
+
+    return NULL_TREE;
+}
+
+/**
  * PLUGIN_ATTRIBUTES
  */
-static void Event_PLUGIN_ATTRIBUTES(void *gcc_data, void *user_data)
+static void Event_PLUGIN_ATTRIBUTES(tree *node, tree name, tree args, int flags, bool *no_add_attrs)
 {
-    // skywalker_plugin.Debug("PLUGIN_ATTRIBUTES");
+    skywalker_plugin.Debug("PLUGIN_ATTRIBUTES");
 }
 
 /**
@@ -342,7 +354,10 @@ void PluginAbility_PluginCallbackTest::Register()
     // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_GGC_MARKING, (plugin_callback_func)Event_PLUGIN_GGC_MARKING, nullptr); 没有回调
     // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_GGC_END, (plugin_callback_func)Event_PLUGIN_GGC_END, nullptr); 没有回调
     // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_REGISTER_GGC_ROOTS, (plugin_callback_func)Event_PLUGIN_REGISTER_GGC_ROOTS, nullptr); 使用这个回调会导致编译器崩溃
-    register_callback(skywalker_plugin.GetPluginName(), PLUGIN_ATTRIBUTES, (plugin_callback_func)Event_PLUGIN_ATTRIBUTES, nullptr);
+
+    struct attribute_spec attribute_test = {"attribute_test", 0, -1, false, true, true, true, Attribute_Handler};
+    register_callback(skywalker_plugin.GetPluginName(), PLUGIN_ATTRIBUTES, (plugin_callback_func)Event_PLUGIN_ATTRIBUTES, &attribute_test);
+
     register_callback(skywalker_plugin.GetPluginName(), PLUGIN_START_UNIT, (plugin_callback_func)Event_PLUGIN_START_UNIT, nullptr);
     register_callback(skywalker_plugin.GetPluginName(), PLUGIN_PRAGMAS, (plugin_callback_func)Event_PLUGIN_PRAGMAS, nullptr);
     register_callback(skywalker_plugin.GetPluginName(), PLUGIN_ALL_PASSES_START, (plugin_callback_func)Event_PLUGIN_ALL_PASSES_START, nullptr);
