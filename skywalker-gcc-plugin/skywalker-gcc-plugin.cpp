@@ -8,8 +8,6 @@
 #include "SkywalkerPlugin.h"
 
 #include "IPluginAbility.h"
-#include "function-count/PluginAbility_FunctionCount.h"
-
 #ifdef ENABLE_PLUGIN_CALLBACK_TEST
 #include "plugin-callback-test/PluginAbility_PluginCallbackTest.h"
 #endif
@@ -54,8 +52,6 @@ int plugin_init(struct plugin_name_args *plugin_info, struct plugin_gcc_version 
     }
 
     // 注册插件能力
-    SKYWALKER_REGISTER_PLUGIN_ABILITY(PluginAbility_FunctionCount);
-
 #ifdef ENABLE_PLUGIN_CALLBACK_TEST
     SKYWALKER_REGISTER_PLUGIN_ABILITY(PluginAbility_PluginCallbackTest);
 #endif

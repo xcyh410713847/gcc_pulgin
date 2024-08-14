@@ -9,6 +9,8 @@ cmake_minimum_required(VERSION 3.5)
 
 project(skywalkerPlugin)
 
+# gcc 插件
 add_subdirectory(skywalker-gcc-plugin)
 
+# 插件测试
 add_subdirectory(example)
