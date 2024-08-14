@@ -8,14 +8,7 @@
 #ifndef __PLUGIN_H__
 #define __PLUGIN_H__
 
-#include <cstdarg>
-#include <cstdio>
-#include <map>
-#include <typeinfo>
-
-#include <gcc-plugin.h>
-#include <plugin-version.h>
-#include <tree.h>
+#include "gcc_plugin.h"
 
 #include "IPluginAbility.h"
 
