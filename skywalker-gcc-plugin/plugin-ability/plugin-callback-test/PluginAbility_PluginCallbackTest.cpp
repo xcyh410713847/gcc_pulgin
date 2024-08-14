@@ -219,7 +219,7 @@ static void Event_PLUGIN_REGISTER_GGC_ROOTS(void *gcc_data, void *user_data)
  */
 static tree handle_skywalker_attribute(tree *node, tree name, tree args, int flags, bool *no_add_attrs)
 {
-    skywalker_plugin.Error("handle_skywalker_attribute");
+    SKYWALKER_DEBUG("handle_skywalker_attribute");
 
     return NULL_TREE;
 }

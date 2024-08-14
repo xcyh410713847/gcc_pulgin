@@ -40,7 +40,7 @@ int plugin_init(struct plugin_name_args *plugin_info, struct plugin_gcc_version 
 
     if (!version_check(version, &gcc_version))
     {
-        skywalker_plugin.Error("GCC版本不匹配， plugin compiled by gcc %s and used by %s", version->basever, gcc_version.basever);
+        SKYWALKER_ERROR("GCC版本不匹配， plugin compiled by gcc %s and used by %s", version->basever, gcc_version.basever);
         return 1;
     }
 
