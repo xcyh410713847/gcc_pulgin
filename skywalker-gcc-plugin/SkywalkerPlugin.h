@@ -5,8 +5,8 @@
 **功能: Skywalker插件
 *************************************************************************/
 
-#ifndef __PLUGIN_H__
-#define __PLUGIN_H__
+#ifndef __SKYWALKER_PLUGIN_H__
+#define __SKYWALKER_PLUGIN_H__
 
 #include "gcc_plugin.h"
 
@@ -179,4 +179,43 @@ private:
 
 extern "C" SkywalkerPlugin skywalker_plugin;
 
-#endif // __PLUGIN_H__
+#pragma #pragma region 宏定义
+
+/**
+ * 注册插件能力
+ */
+#define SKYWALKER_REGISTER_PLUGIN_ABILITY(ability) skywalker_plugin.RegisterPluginAbility<ability>();
+
+/**
+ * 反注册插件能力
+ */
+#define SKYWALKER_UNREGISTER_PLUGIN_ABILITY(ability) skywalker_plugin.UnRegisterPluginAbility<ability>();
+
+/**
+ * 获取插件能力
+ */
+#define SKYWALKER_GET_PLUGIN_ABILITY(ability) skywalker_plugin.GetPluginAbility<ability>()
+
+/**
+ * DEBUG
+ */
+#define SKYWALKER_DEBUG(format, ...) skywalker_plugin.Debug(format, ##__VA_ARGS__)
+
+/**
+ * INFO
+ */
+#define SKYWALKER_INFO(format, ...) skywalker_plugin.Info(format, ##__VA_ARGS__)
+
+/**
+ * WARNING
+ */
+#define SKYWALKER_WARNING(format, ...) skywalker_plugin.Warning(format, ##__VA_ARGS__)
+
+/**
+ * ERROR
+ */
+#define SKYWALKER_ERROR(format, ...) skywalker_plugin.Error(format, ##__VA_ARGS__)
+
+#pragma endregion 宏定义
+
+#endif // __SKYWALKER_PLUGIN_H__

@@ -16,31 +16,31 @@
  */
 static void Event_PLUGIN_START_PARSE_FUNCTION(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_START_PARSE_FUNCTION");
+    // SKYWALKER_DEBUG("PLUGIN_START_PARSE_FUNCTION");
 
     // 打印函数返回值类型和函数名
     tree func_decl = (tree)gcc_data;
     if (func_decl && TREE_CODE(func_decl) == FUNCTION_DECL)
     {
         // UID
-        skywalker_plugin.Debug("PLUGIN_START_PARSE_FUNCTION Func Decl UID: %u,", DECL_UID(func_decl));
+        SKYWALKER_DEBUG("PLUGIN_START_PARSE_FUNCTION Func Decl UID: %u,", DECL_UID(func_decl));
 
         // 函数名
-        skywalker_plugin.Debug("PLUGIN_START_PARSE_FUNCTION Func Name: %s", IDENTIFIER_POINTER(DECL_NAME(func_decl)));
+        SKYWALKER_DEBUG("PLUGIN_START_PARSE_FUNCTION Func Name: %s", IDENTIFIER_POINTER(DECL_NAME(func_decl)));
 
         // 返回值类型
         tree return_type = TREE_TYPE(TREE_TYPE(func_decl));
-        skywalker_plugin.Debug("PLUGIN_START_PARSE_FUNCTION Func Type: %s", get_tree_code_name(TREE_CODE(return_type)));
+        SKYWALKER_DEBUG("PLUGIN_START_PARSE_FUNCTION Func Type: %s", get_tree_code_name(TREE_CODE(return_type)));
 
         // 参数
         tree param_decl = DECL_ARGUMENTS(func_decl);
         while (param_decl)
         {
             // UID
-            skywalker_plugin.Debug("PLUGIN_START_PARSE_FUNCTION Param Decl UID: %u,", DECL_UID(param_decl));
+            SKYWALKER_DEBUG("PLUGIN_START_PARSE_FUNCTION Param Decl UID: %u,", DECL_UID(param_decl));
 
             // 参数名
-            skywalker_plugin.Debug("PLUGIN_START_PARSE_FUNCTION Param Name: %s", IDENTIFIER_POINTER(DECL_NAME(param_decl)));
+            SKYWALKER_DEBUG("PLUGIN_START_PARSE_FUNCTION Param Name: %s", IDENTIFIER_POINTER(DECL_NAME(param_decl)));
 
             // 参数类型
             tree param_type = TREE_TYPE(param_decl);
@@ -48,16 +48,16 @@ static void Event_PLUGIN_START_PARSE_FUNCTION(void *gcc_data, void *user_data)
             {
                 if (TYPE_UNSIGNED(param_type))
                 {
-                    skywalker_plugin.Debug("PLUGIN_START_PARSE_FUNCTION Param Type: unsigned %s", get_tree_code_name(TREE_CODE(param_type)));
+                    SKYWALKER_DEBUG("PLUGIN_START_PARSE_FUNCTION Param Type: unsigned %s", get_tree_code_name(TREE_CODE(param_type)));
                 }
                 else
                 {
-                    skywalker_plugin.Debug("PLUGIN_START_PARSE_FUNCTION Param Type: signed %s", get_tree_code_name(TREE_CODE(param_type)));
+                    SKYWALKER_DEBUG("PLUGIN_START_PARSE_FUNCTION Param Type: signed %s", get_tree_code_name(TREE_CODE(param_type)));
                 }
             }
             else
             {
-                skywalker_plugin.Debug("PLUGIN_START_PARSE_FUNCTION Param Type: %s", get_tree_code_name(TREE_CODE(param_type)));
+                SKYWALKER_DEBUG("PLUGIN_START_PARSE_FUNCTION Param Type: %s", get_tree_code_name(TREE_CODE(param_type)));
             }
 
             param_decl = DECL_CHAIN(param_decl);
@@ -70,7 +70,7 @@ static void Event_PLUGIN_START_PARSE_FUNCTION(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_FINISH_PARSE_FUNCTION(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_FINISH_PARSE_FUNCTION");
+    // SKYWALKER_DEBUG("PLUGIN_FINISH_PARSE_FUNCTION");
 }
 
 /**
@@ -78,7 +78,7 @@ static void Event_PLUGIN_FINISH_PARSE_FUNCTION(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_PASS_MANAGER_SETUP(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_PASS_MANAGER_SETUP");
+    // SKYWALKER_DEBUG("PLUGIN_PASS_MANAGER_SETUP");
 }
 
 /**
@@ -86,7 +86,7 @@ static void Event_PLUGIN_PASS_MANAGER_SETUP(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_FINISH_TYPE(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_FINISH_TYPE");
+    // SKYWALKER_DEBUG("PLUGIN_FINISH_TYPE");
 }
 
 /**
@@ -94,17 +94,17 @@ static void Event_PLUGIN_FINISH_TYPE(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_FINISH_DECL(void *gcc_data, void *user_data)
 {
-    skywalker_plugin.Debug("PLUGIN_FINISH_DECL");
+    SKYWALKER_DEBUG("PLUGIN_FINISH_DECL");
 
     // 打印变量名
     // tree val_decl = (tree)gcc_data;
     // if (val_decl && TREE_CODE(val_decl) == VAR_DECL)
     // {
     //     // UID
-    //     skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Decl UID: %u,", DECL_UID(val_decl));
+    //     SKYWALKER_DEBUG("PLUGIN_FINISH_DECL Val Decl UID: %u,", DECL_UID(val_decl));
 
     //     // 变量名
-    //     skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Name: %s", IDENTIFIER_POINTER(DECL_NAME(val_decl)));
+    //     SKYWALKER_DEBUG("PLUGIN_FINISH_DECL Val Name: %s", IDENTIFIER_POINTER(DECL_NAME(val_decl)));
 
     //     // 变量类型
     //     tree val_type = TREE_TYPE(val_decl);
@@ -112,16 +112,16 @@ static void Event_PLUGIN_FINISH_DECL(void *gcc_data, void *user_data)
     //     {
     //         if (TYPE_UNSIGNED(val_type))
     //         {
-    //             skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Type: unsigned %s", get_tree_code_name(TREE_CODE(val_type)));
+    //             SKYWALKER_DEBUG("PLUGIN_FINISH_DECL Val Type: unsigned %s", get_tree_code_name(TREE_CODE(val_type)));
     //         }
     //         else
     //         {
-    //             skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Type: signed %s", get_tree_code_name(TREE_CODE(val_type)));
+    //             SKYWALKER_DEBUG("PLUGIN_FINISH_DECL Val Type: signed %s", get_tree_code_name(TREE_CODE(val_type)));
     //         }
     //     }
     //     else
     //     {
-    //         skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Type: %s", get_tree_code_name(TREE_CODE(val_type)));
+    //         SKYWALKER_DEBUG("PLUGIN_FINISH_DECL Val Type: %s", get_tree_code_name(TREE_CODE(val_type)));
     //     }
     // }
 
@@ -131,7 +131,7 @@ static void Event_PLUGIN_FINISH_DECL(void *gcc_data, void *user_data)
     //     return;
     // }
 
-    // skywalker_plugin.Debug("PLUGIN_FINISH_DECL Func Name: %s", IDENTIFIER_POINTER(DECL_NAME(decl)));
+    // SKYWALKER_DEBUG("PLUGIN_FINISH_DECL Func Name: %s", IDENTIFIER_POINTER(DECL_NAME(decl)));
 
     // for (tree attribute = DECL_ATTRIBUTES(decl); attribute; attribute = TREE_CHAIN(attribute))
     // {
@@ -143,7 +143,7 @@ static void Event_PLUGIN_FINISH_DECL(void *gcc_data, void *user_data)
     //             const char *attr_name_str = IDENTIFIER_POINTER(attr_name);
     //             if (strcmp(attr_name_str, "skywalker") == 0)
     //             {
-    //                 skywalker_plugin.Debug("Function '%s' has skywalker attribute\n", IDENTIFIER_POINTER(DECL_NAME(decl)));
+    //                 SKYWALKER_DEBUG("Function '%s' has skywalker attribute\n", IDENTIFIER_POINTER(DECL_NAME(decl)));
     //             }
     //         }
     //     }
@@ -155,7 +155,7 @@ static void Event_PLUGIN_FINISH_DECL(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_FINISH_UNIT(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_FINISH_UNIT");
+    // SKYWALKER_DEBUG("PLUGIN_FINISH_UNIT");
 }
 
 /**
@@ -163,7 +163,7 @@ static void Event_PLUGIN_FINISH_UNIT(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_PRE_GENERICIZE(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_PRE_GENERICIZE");
+    // SKYWALKER_DEBUG("PLUGIN_PRE_GENERICIZE");
 }
 
 /**
@@ -171,7 +171,7 @@ static void Event_PLUGIN_PRE_GENERICIZE(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_FINISH(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_FINISH");
+    // SKYWALKER_DEBUG("PLUGIN_FINISH");
 }
 
 /**
@@ -179,7 +179,7 @@ static void Event_PLUGIN_FINISH(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_INFO(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_INFO");
+    // SKYWALKER_DEBUG("PLUGIN_INFO");
 }
 
 /**
@@ -187,7 +187,7 @@ static void Event_PLUGIN_INFO(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_GGC_START(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_GGC_START");
+    // SKYWALKER_DEBUG("PLUGIN_GGC_START");
 }
 
 /**
@@ -195,7 +195,7 @@ static void Event_PLUGIN_GGC_START(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_GGC_MARKING(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_GGC_MARKING");
+    // SKYWALKER_DEBUG("PLUGIN_GGC_MARKING");
 }
 
 /**
@@ -203,7 +203,7 @@ static void Event_PLUGIN_GGC_MARKING(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_GGC_END(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_GGC_END");
+    // SKYWALKER_DEBUG("PLUGIN_GGC_END");
 }
 
 /**
@@ -211,7 +211,7 @@ static void Event_PLUGIN_GGC_END(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_REGISTER_GGC_ROOTS(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_REGISTER_GGC_ROOTS");
+    // SKYWALKER_DEBUG("PLUGIN_REGISTER_GGC_ROOTS");
 }
 
 /**
@@ -237,7 +237,7 @@ static void Event_PLUGIN_ATTRIBUTES(void *gcc_data, void *user_data)
 {
     for (int i = 0; i < sizeof(skywalker_attributes) / sizeof(skywalker_attributes[0]); i++)
     {
-        skywalker_plugin.Debug("PLUGIN_ATTRIBUTES Attribute Name: %s", skywalker_attributes[i].name);
+        SKYWALKER_DEBUG("PLUGIN_ATTRIBUTES Attribute Name: %s", skywalker_attributes[i].name);
     }
 
     register_attribute(skywalker_attributes);
@@ -248,7 +248,7 @@ static void Event_PLUGIN_ATTRIBUTES(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_START_UNIT(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_START_UNIT");
+    // SKYWALKER_DEBUG("PLUGIN_START_UNIT");
 }
 
 /**
@@ -256,7 +256,7 @@ static void Event_PLUGIN_START_UNIT(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_PRAGMAS(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_PRAGMAS");
+    // SKYWALKER_DEBUG("PLUGIN_PRAGMAS");
 }
 
 /**
@@ -264,7 +264,7 @@ static void Event_PLUGIN_PRAGMAS(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_ALL_PASSES_START(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_ALL_PASSES_START");
+    // SKYWALKER_DEBUG("PLUGIN_ALL_PASSES_START");
 }
 
 /**
@@ -272,7 +272,7 @@ static void Event_PLUGIN_ALL_PASSES_START(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_ALL_PASSES_END(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_ALL_PASSES_END");
+    // SKYWALKER_DEBUG("PLUGIN_ALL_PASSES_END");
 }
 
 /**
@@ -280,7 +280,7 @@ static void Event_PLUGIN_ALL_PASSES_END(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_ALL_IPA_PASSES_START(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_ALL_IPA_PASSES_START");
+    // SKYWALKER_DEBUG("PLUGIN_ALL_IPA_PASSES_START");
 }
 
 /**
@@ -288,7 +288,7 @@ static void Event_PLUGIN_ALL_IPA_PASSES_START(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_ALL_IPA_PASSES_END(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_ALL_IPA_PASSES_END");
+    // SKYWALKER_DEBUG("PLUGIN_ALL_IPA_PASSES_END");
 }
 
 /**
@@ -296,7 +296,7 @@ static void Event_PLUGIN_ALL_IPA_PASSES_END(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_OVERRIDE_GATE(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_OVERRIDE_GATE");
+    // SKYWALKER_DEBUG("PLUGIN_OVERRIDE_GATE");
 }
 
 /**
@@ -304,7 +304,7 @@ static void Event_PLUGIN_OVERRIDE_GATE(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_PASS_EXECUTION(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_PASS_EXECUTION");
+    // SKYWALKER_DEBUG("PLUGIN_PASS_EXECUTION");
 }
 
 /**
@@ -312,7 +312,7 @@ static void Event_PLUGIN_PASS_EXECUTION(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_EARLY_GIMPLE_PASSES_START(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_EARLY_GIMPLE_PASSES_START");
+    // SKYWALKER_DEBUG("PLUGIN_EARLY_GIMPLE_PASSES_START");
 }
 
 /**
@@ -320,7 +320,7 @@ static void Event_PLUGIN_EARLY_GIMPLE_PASSES_START(void *gcc_data, void *user_da
  */
 static void Event_PLUGIN_EARLY_GIMPLE_PASSES_END(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_EARLY_GIMPLE_PASSES_END");
+    // SKYWALKER_DEBUG("PLUGIN_EARLY_GIMPLE_PASSES_END");
 }
 
 /**
@@ -328,7 +328,7 @@ static void Event_PLUGIN_EARLY_GIMPLE_PASSES_END(void *gcc_data, void *user_data
  */
 static void Event_PLUGIN_NEW_PASS(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_NEW_PASS");
+    // SKYWALKER_DEBUG("PLUGIN_NEW_PASS");
 }
 
 /**
@@ -336,11 +336,11 @@ static void Event_PLUGIN_NEW_PASS(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_INCLUDE_FILE(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_INCLUDE_FILE");
+    // SKYWALKER_DEBUG("PLUGIN_INCLUDE_FILE");
 
     // 打印文件名
     const char *file_name = (const char *)gcc_data;
-    skywalker_plugin.Debug("PLUGIN_INCLUDE_FILE File Name: %s", file_name);
+    SKYWALKER_DEBUG("PLUGIN_INCLUDE_FILE File Name: %s", file_name);
 }
 
 /**
@@ -348,7 +348,7 @@ static void Event_PLUGIN_INCLUDE_FILE(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_ANALYZER_INIT(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_ANALYZER_INIT");
+    // SKYWALKER_DEBUG("PLUGIN_ANALYZER_INIT");
 }
 
 /**
@@ -356,7 +356,7 @@ static void Event_PLUGIN_ANALYZER_INIT(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_EVENT_FIRST_DYNAMIC(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_EVENT_FIRST_DYNAMIC");
+    // SKYWALKER_DEBUG("PLUGIN_EVENT_FIRST_DYNAMIC");
 }
 
 #pragma endregion Event
@@ -371,7 +371,7 @@ PluginAbility_PluginCallbackTest::~PluginAbility_PluginCallbackTest()
 
 void PluginAbility_PluginCallbackTest::Register()
 {
-    skywalker_plugin.Debug("PluginAbility_PluginCallbackTest::Register");
+    SKYWALKER_DEBUG("PluginAbility_PluginCallbackTest::Register");
 
     // 注册事件
     // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_START_PARSE_FUNCTION, (plugin_callback_func)Event_PLUGIN_START_PARSE_FUNCTION, nullptr);
@@ -406,7 +406,7 @@ void PluginAbility_PluginCallbackTest::Register()
 
 void PluginAbility_PluginCallbackTest::UnRegister()
 {
-    skywalker_plugin.Debug("PluginAbility_PluginCallbackTest::UnRegister");
+    SKYWALKER_DEBUG("PluginAbility_PluginCallbackTest::UnRegister");
 
     // 反注册事件
     // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_START_PARSE_FUNCTION);
@@ -441,7 +441,7 @@ void PluginAbility_PluginCallbackTest::UnRegister()
 
 void PluginAbility_PluginCallbackTest::Release()
 {
-    skywalker_plugin.Debug("PluginAbility_PluginCallbackTest::Release");
+    SKYWALKER_DEBUG("PluginAbility_PluginCallbackTest::Release");
 
     delete this;
 }
