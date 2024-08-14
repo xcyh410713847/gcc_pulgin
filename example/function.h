@@ -1,3 +1,3 @@
-int Test1(bool b) __attribute__((skywalker));
+__attribute__((skywalker)) int Test1(bool b);
 
-void Test2(int i, unsigned int ui) __attribute__((skywalker));
+[[skywalker]] void Test2(int i, unsigned int ui);

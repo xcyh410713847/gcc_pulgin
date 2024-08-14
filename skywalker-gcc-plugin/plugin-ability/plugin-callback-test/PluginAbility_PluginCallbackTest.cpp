@@ -94,36 +94,60 @@ static void Event_PLUGIN_FINISH_TYPE(void *gcc_data, void *user_data)
  */
 static void Event_PLUGIN_FINISH_DECL(void *gcc_data, void *user_data)
 {
-    // skywalker_plugin.Debug("PLUGIN_FINISH_DECL");
+    skywalker_plugin.Debug("PLUGIN_FINISH_DECL");
 
     // 打印变量名
-    tree val_decl = (tree)gcc_data;
-    if (val_decl && TREE_CODE(val_decl) == VAR_DECL)
-    {
-        // UID
-        skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Decl UID: %u,", DECL_UID(val_decl));
+    // tree val_decl = (tree)gcc_data;
+    // if (val_decl && TREE_CODE(val_decl) == VAR_DECL)
+    // {
+    //     // UID
+    //     skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Decl UID: %u,", DECL_UID(val_decl));
 
-        // 变量名
-        skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Name: %s", IDENTIFIER_POINTER(DECL_NAME(val_decl)));
+    //     // 变量名
+    //     skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Name: %s", IDENTIFIER_POINTER(DECL_NAME(val_decl)));
 
-        // 变量类型
-        tree val_type = TREE_TYPE(val_decl);
-        if (TREE_CODE(val_type) == INTEGER_TYPE)
-        {
-            if (TYPE_UNSIGNED(val_type))
-            {
-                skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Type: unsigned %s", get_tree_code_name(TREE_CODE(val_type)));
-            }
-            else
-            {
-                skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Type: signed %s", get_tree_code_name(TREE_CODE(val_type)));
-            }
-        }
-        else
-        {
-            skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Type: %s", get_tree_code_name(TREE_CODE(val_type)));
-        }
-    }
+    //     // 变量类型
+    //     tree val_type = TREE_TYPE(val_decl);
+    //     if (TREE_CODE(val_type) == INTEGER_TYPE)
+    //     {
+    //         if (TYPE_UNSIGNED(val_type))
+    //         {
+    //             skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Type: unsigned %s", get_tree_code_name(TREE_CODE(val_type)));
+    //         }
+    //         else
+    //         {
+    //             skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Type: signed %s", get_tree_code_name(TREE_CODE(val_type)));
+    //         }
+    //     }
+    //     else
+    //     {
+    //         skywalker_plugin.Debug("PLUGIN_FINISH_DECL Val Type: %s", get_tree_code_name(TREE_CODE(val_type)));
+    //     }
+    // }
+
+    // tree decl = (tree)gcc_data;
+    // if (TREE_CODE(decl) != FUNCTION_DECL)
+    // {
+    //     return;
+    // }
+
+    // skywalker_plugin.Debug("PLUGIN_FINISH_DECL Func Name: %s", IDENTIFIER_POINTER(DECL_NAME(decl)));
+
+    // for (tree attribute = DECL_ATTRIBUTES(decl); attribute; attribute = TREE_CHAIN(attribute))
+    // {
+    //     if (TREE_CODE(attribute) == TREE_LIST)
+    //     {
+    //         tree attr_name = TREE_PURPOSE(attribute);
+    //         if (attr_name && TREE_CODE(attr_name) == IDENTIFIER_NODE)
+    //         {
+    //             const char *attr_name_str = IDENTIFIER_POINTER(attr_name);
+    //             if (strcmp(attr_name_str, "skywalker") == 0)
+    //             {
+    //                 skywalker_plugin.Debug("Function '%s' has skywalker attribute\n", IDENTIFIER_POINTER(DECL_NAME(decl)));
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 /**
@@ -203,15 +227,20 @@ static tree handle_skywalker_attribute(tree *node, tree name, tree args, int fla
 /**
  * 自定义属性
  */
-static struct attribute_spec skywalker_attribute = {"skywalker", 0, -1, true, false, false, false, handle_skywalker_attribute, NULL};
+static struct attribute_spec skywalker_attributes[] = {
+    {"skywalker", 0, 0, false, false, false, false, handle_skywalker_attribute, NULL}};
 
 /**
  * PLUGIN_ATTRIBUTES
  */
 static void Event_PLUGIN_ATTRIBUTES(void *gcc_data, void *user_data)
 {
-    skywalker_plugin.Debug("PLUGIN_ATTRIBUTES Register Attribute: %s", skywalker_attribute.name);
-    register_attribute(&skywalker_attribute);
+    for (int i = 0; i < sizeof(skywalker_attributes) / sizeof(skywalker_attributes[0]); i++)
+    {
+        skywalker_plugin.Debug("PLUGIN_ATTRIBUTES Attribute Name: %s", skywalker_attributes[i].name);
+    }
+
+    register_attribute(skywalker_attributes);
 }
 
 /**
@@ -349,7 +378,7 @@ void PluginAbility_PluginCallbackTest::Register()
     // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_PARSE_FUNCTION, (plugin_callback_func)Event_PLUGIN_FINISH_PARSE_FUNCTION, nullptr);
     // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_PASS_MANAGER_SETUP, (plugin_callback_func)Event_PLUGIN_PASS_MANAGER_SETUP, nullptr); 使用这个回调会导致编译器崩溃
     // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_TYPE, (plugin_callback_func)Event_PLUGIN_FINISH_TYPE, nullptr); 没有回调
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_DECL, (plugin_callback_func)Event_PLUGIN_FINISH_DECL, nullptr);
+    register_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_DECL, (plugin_callback_func)Event_PLUGIN_FINISH_DECL, nullptr);
     // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_UNIT, (plugin_callback_func)Event_PLUGIN_FINISH_UNIT, nullptr);
     // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_PRE_GENERICIZE, (plugin_callback_func)Event_PLUGIN_PRE_GENERICIZE, nullptr);
     // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH, (plugin_callback_func)Event_PLUGIN_FINISH, nullptr);
@@ -384,7 +413,7 @@ void PluginAbility_PluginCallbackTest::UnRegister()
     // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_PARSE_FUNCTION);
     // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_PASS_MANAGER_SETUP); 使用这个回调会导致编译器崩溃
     // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_TYPE); 没有回调
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_DECL);
+    unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_DECL);
     // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_UNIT);
     // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_PRE_GENERICIZE);
     // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH);
