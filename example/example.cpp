@@ -1,12 +1,12 @@
-﻿void Test1(int i, unsigned int ui)
-{
-    return;
-}
+﻿#include "function.h"
 
-[[attribute_test]]
-int Test(bool b)
+int Test1(bool b)
 {
     return 0;
+}
+
+void Test2(int i, unsigned int ui)
+{
 }
 
 int main()

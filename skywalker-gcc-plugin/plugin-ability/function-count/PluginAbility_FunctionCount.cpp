@@ -8,7 +8,7 @@
 
 #include "PluginAbility_FunctionCount.h"
 
-#include "../SkywalkerPlugin.h"
+#include "SkywalkerPlugin.h"
 
 static void Event_PLUGIN_ALL_PASSES_START(void *gcc_data, void *user_data)
 {

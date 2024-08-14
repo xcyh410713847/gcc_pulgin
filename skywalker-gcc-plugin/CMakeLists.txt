@@ -36,6 +36,7 @@ find_path(GCC_PLUGIN_INCLUDE_DIR NAMES gcc-plugin.h
 # 包含插件头文件目录
 include_directories(
     ${GCC_PLUGIN_INCLUDE_DIR}
+    ./
     ./plugin-ability/
 )
 

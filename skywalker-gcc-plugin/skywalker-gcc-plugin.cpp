@@ -11,7 +11,7 @@
 #include "function-count/PluginAbility_FunctionCount.h"
 
 #ifdef ENABLE_PLUGIN_CALLBACK_TEST
-#include "plugin-ability/plugin-callback-test/PluginAbility_PluginCallbackTest.h"
+#include "plugin-callback-test/PluginAbility_PluginCallbackTest.h"
 #endif
 
 int plugin_is_GPL_compatible;
