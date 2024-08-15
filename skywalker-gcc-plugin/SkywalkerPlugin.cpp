@@ -49,6 +49,8 @@ SkywalkerPlugin::~SkywalkerPlugin()
 
 void SkywalkerPlugin::Debug(const char *format, ...)
 {
+#ifdef ENABLE_PLUGIN_DEBUG
+
 	va_list args;
 	va_start(args, format);
 
@@ -69,6 +71,8 @@ void SkywalkerPlugin::Debug(const char *format, ...)
 
 	// 清理缓冲区
 	delete[] message;
+
+#endif
 }
 
 void SkywalkerPlugin::Info(const char *format, ...)
