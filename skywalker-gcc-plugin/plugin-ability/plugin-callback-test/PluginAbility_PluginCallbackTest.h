@@ -8,29 +8,12 @@
 #ifndef __PLUGIN_ABILITY_PLUGIN_CALLBACK_TEST_H__
 #define __PLUGIN_ABILITY_PLUGIN_CALLBACK_TEST_H__
 
-#include "IPluginAbility.h"
+#include "PluginAbility.h"
 
-class PluginAbility_PluginCallbackTest : public IPluginAbility
+class PluginAbility_PluginCallbackTest : public PluginAbility
 {
 public:
     PluginAbility_PluginCallbackTest();
-    virtual ~PluginAbility_PluginCallbackTest();
-
-public:
-    /**
-     * 注册
-     */
-    virtual void Register() override;
-
-    /**
-     * 反注册
-     */
-    virtual void UnRegister() override;
-
-    /**
-     * 释放
-     */
-    virtual void Release() override;
 };
 
 #endif // __PLUGIN_ABILITY_PLUGIN_CALLBACK_TEST_H__

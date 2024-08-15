@@ -363,85 +363,32 @@ static void Event_PLUGIN_EVENT_FIRST_DYNAMIC(void *gcc_data, void *user_data)
 
 PluginAbility_PluginCallbackTest::PluginAbility_PluginCallbackTest()
 {
-}
-
-PluginAbility_PluginCallbackTest::~PluginAbility_PluginCallbackTest()
-{
-}
-
-void PluginAbility_PluginCallbackTest::Register()
-{
-    SKYWALKER_DEBUG("PluginAbility_PluginCallbackTest::Register");
-
-    // 注册事件
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_START_PARSE_FUNCTION, (plugin_callback_func)Event_PLUGIN_START_PARSE_FUNCTION, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_PARSE_FUNCTION, (plugin_callback_func)Event_PLUGIN_FINISH_PARSE_FUNCTION, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_PASS_MANAGER_SETUP, (plugin_callback_func)Event_PLUGIN_PASS_MANAGER_SETUP, nullptr); 使用这个回调会导致编译器崩溃
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_TYPE, (plugin_callback_func)Event_PLUGIN_FINISH_TYPE, nullptr); 没有回调
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_DECL, (plugin_callback_func)Event_PLUGIN_FINISH_DECL, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_UNIT, (plugin_callback_func)Event_PLUGIN_FINISH_UNIT, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_PRE_GENERICIZE, (plugin_callback_func)Event_PLUGIN_PRE_GENERICIZE, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH, (plugin_callback_func)Event_PLUGIN_FINISH, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_INFO, (plugin_callback_func)Event_PLUGIN_INFO, nullptr); 使用这个回调会导致编译器崩溃
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_GGC_START, (plugin_callback_func)Event_PLUGIN_GGC_START, nullptr); 没有回调
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_GGC_MARKING, (plugin_callback_func)Event_PLUGIN_GGC_MARKING, nullptr); 没有回调
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_GGC_END, (plugin_callback_func)Event_PLUGIN_GGC_END, nullptr); 没有回调
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_REGISTER_GGC_ROOTS, (plugin_callback_func)Event_PLUGIN_REGISTER_GGC_ROOTS, nullptr); 使用这个回调会导致编译器崩溃
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_ATTRIBUTES, (plugin_callback_func)Event_PLUGIN_ATTRIBUTES, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_START_UNIT, (plugin_callback_func)Event_PLUGIN_START_UNIT, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_PRAGMAS, (plugin_callback_func)Event_PLUGIN_PRAGMAS, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_ALL_PASSES_START, (plugin_callback_func)Event_PLUGIN_ALL_PASSES_START, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_ALL_PASSES_END, (plugin_callback_func)Event_PLUGIN_ALL_PASSES_END, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_ALL_IPA_PASSES_START, (plugin_callback_func)Event_PLUGIN_ALL_IPA_PASSES_START, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_ALL_IPA_PASSES_END, (plugin_callback_func)Event_PLUGIN_ALL_IPA_PASSES_END, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_OVERRIDE_GATE, (plugin_callback_func)Event_PLUGIN_OVERRIDE_GATE, nullptr); 打印太多了
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_PASS_EXECUTION, (plugin_callback_func)Event_PLUGIN_PASS_EXECUTION, nullptr); 打印太多了
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_EARLY_GIMPLE_PASSES_START, (plugin_callback_func)Event_PLUGIN_EARLY_GIMPLE_PASSES_START, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_EARLY_GIMPLE_PASSES_END, (plugin_callback_func)Event_PLUGIN_EARLY_GIMPLE_PASSES_END, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_NEW_PASS, (plugin_callback_func)Event_PLUGIN_NEW_PASS, nullptr); 没有回调
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_INCLUDE_FILE, (plugin_callback_func)Event_PLUGIN_INCLUDE_FILE, nullptr);
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_ANALYZER_INIT, (plugin_callback_func)Event_PLUGIN_ANALYZER_INIT, nullptr); 没有回调
-    // register_callback(skywalker_plugin.GetPluginName(), PLUGIN_EVENT_FIRST_DYNAMIC, (plugin_callback_func)Event_PLUGIN_EVENT_FIRST_DYNAMIC, nullptr); 使用这个回调会导致编译器崩溃
-}
-
-void PluginAbility_PluginCallbackTest::UnRegister()
-{
-    SKYWALKER_DEBUG("PluginAbility_PluginCallbackTest::UnRegister");
-
-    // 反注册事件
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_START_PARSE_FUNCTION);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_PARSE_FUNCTION);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_PASS_MANAGER_SETUP); 使用这个回调会导致编译器崩溃
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_TYPE); 没有回调
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_DECL);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH_UNIT);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_PRE_GENERICIZE);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_FINISH);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_INFO); 使用这个回调会导致编译器崩溃
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_GGC_START); 没有回调
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_GGC_MARKING); 没有回调
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_GGC_END); 没有回调
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_REGISTER_GGC_ROOTS); 使用这个回调会导致编译器崩溃
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_ATTRIBUTES);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_START_UNIT);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_PRAGMAS);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_ALL_PASSES_START);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_ALL_PASSES_END);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_ALL_IPA_PASSES_START);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_ALL_IPA_PASSES_END);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_OVERRIDE_GATE); 打印太多了
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_PASS_EXECUTION); 打印太多了
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_EARLY_GIMPLE_PASSES_START);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_EARLY_GIMPLE_PASSES_END);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_NEW_PASS); 没有回调
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_INCLUDE_FILE);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_ANALYZER_INIT);
-    // unregister_callback(skywalker_plugin.GetPluginName(), PLUGIN_EVENT_FIRST_DYNAMIC); 使用这个回调会导致编译器崩溃
-}
-
-void PluginAbility_PluginCallbackTest::Release()
-{
-    SKYWALKER_DEBUG("PluginAbility_PluginCallbackTest::Release");
-
-    delete this;
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_START_PARSE_FUNCTION, (plugin_callback_func)Event_PLUGIN_START_PARSE_FUNCTION);
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_FINISH_PARSE_FUNCTION, (plugin_callback_func)Event_PLUGIN_FINISH_PARSE_FUNCTION);
+    // // REGISTER_PLUGIN_CALLBACK(PLUGIN_PASS_MANAGER_SETUP, (plugin_callback_func)Event_PLUGIN_PASS_MANAGER_SETUP);使用这个回调会导致编译器崩溃
+    // // REGISTER_PLUGIN_CALLBACK(PLUGIN_FINISH_TYPE, (plugin_callback_func)Event_PLUGIN_FINISH_TYPE);没有回调
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_FINISH_DECL, (plugin_callback_func)Event_PLUGIN_FINISH_DECL);
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_FINISH_UNIT, (plugin_callback_func)Event_PLUGIN_FINISH_UNIT);
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_PRE_GENERICIZE, (plugin_callback_func)Event_PLUGIN_PRE_GENERICIZE);
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_FINISH, (plugin_callback_func)Event_PLUGIN_FINISH);
+    // // REGISTER_PLUGIN_CALLBACK(PLUGIN_INFO, (plugin_callback_func)Event_PLUGIN_INFO);使用这个回调会导致编译器崩溃
+    // // REGISTER_PLUGIN_CALLBACK(PLUGIN_GGC_START, (plugin_callback_func)Event_PLUGIN_GGC_START);没有回调
+    // // REGISTER_PLUGIN_CALLBACK(PLUGIN_GGC_MARKING, (plugin_callback_func)Event_PLUGIN_GGC_MARKING);没有回调
+    // // REGISTER_PLUGIN_CALLBACK(PLUGIN_GGC_END, (plugin_callback_func)Event_PLUGIN_GGC_END);没有回调
+    // // REGISTER_PLUGIN_CALLBACK(PLUGIN_REGISTER_GGC_ROOTS, (plugin_callback_func)Event_PLUGIN_REGISTER_GGC_ROOTS);使用这个回调会导致编译器崩溃
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_ATTRIBUTES, (plugin_callback_func)Event_PLUGIN_ATTRIBUTES);
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_START_UNIT, (plugin_callback_func)Event_PLUGIN_START_UNIT);
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_PRAGMAS, (plugin_callback_func)Event_PLUGIN_PRAGMAS);
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_ALL_PASSES_START, (plugin_callback_func)Event_PLUGIN_ALL_PASSES_START);
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_ALL_PASSES_END, (plugin_callback_func)Event_PLUGIN_ALL_PASSES_END);
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_ALL_IPA_PASSES_START, (plugin_callback_func)Event_PLUGIN_ALL_IPA_PASSES_START);
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_ALL_IPA_PASSES_END, (plugin_callback_func)Event_PLUGIN_ALL_IPA_PASSES_END);
+    // // REGISTER_PLUGIN_CALLBACK(PLUGIN_OVERRIDE_GATE, (plugin_callback_func)Event_PLUGIN_OVERRIDE_GATE);打印太多了
+    // // REGISTER_PLUGIN_CALLBACK(PLUGIN_PASS_EXECUTION, (plugin_callback_func)Event_PLUGIN_PASS_EXECUTION);打印太多了
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_EARLY_GIMPLE_PASSES_START, (plugin_callback_func)Event_PLUGIN_EARLY_GIMPLE_PASSES_START);
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_EARLY_GIMPLE_PASSES_END, (plugin_callback_func)Event_PLUGIN_EARLY_GIMPLE_PASSES_END);
+    // // REGISTER_PLUGIN_CALLBACK(PLUGIN_NEW_PASS, (plugin_callback_func)Event_PLUGIN_NEW_PASS);没有回调
+    // REGISTER_PLUGIN_CALLBACK(PLUGIN_INCLUDE_FILE, (plugin_callback_func)Event_PLUGIN_INCLUDE_FILE);
+    // // REGISTER_PLUGIN_CALLBACK(PLUGIN_ANALYZER_INIT, (plugin_callback_func)Event_PLUGIN_ANALYZER_INIT);没有回调
+    // // REGISTER_PLUGIN_CALLBACK(PLUGIN_EVENT_FIRST_DYNAMIC, (plugin_callback_func)Event_PLUGIN_EVENT_FIRST_DYNAMIC);使用这个回调会导致编译器崩溃
 }

@@ -15,13 +15,18 @@ project(${plugin_Name})
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# 开关
+option(ENABLE_PLUGIN_CALLBACK_TEST "Enable plugin callback test" ON) # 开启插件回调测试
+option(ENABLE_PLUGIN_DEBUG "Enable plugin debug" ON) # 开启插件调试
+option(ENABLE_USE_PLUGIN "Enable use plugin" OFF) # 开启使用插件
+
 # 增加编译选项
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC") # 设置为位置独立代码
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fplugin=${CMAKE_BINARY_DIR}/../bin/skywalker-gcc-plugin.so")  # 设置插件
 
-# 宏开关
-option(ENABLE_PLUGIN_CALLBACK_TEST "Enable plugin callback test" ON)
-option(ENABLE_PLUGIN_DEBUG "Enable plugin debug" OFF)
+# 使用插件
+if(ENABLE_USE_PLUGIN)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fplugin=${CMAKE_BINARY_DIR}/../bin/skywalker-gcc-plugin.so")
+endif()
 
 # 宏定义
 if(ENABLE_PLUGIN_CALLBACK_TEST)
@@ -67,6 +72,7 @@ add_library(${plugin_Name} SHARED ${plugin_Source})
 
 # 取消库名前的lib前缀
 set_target_properties(${plugin_Name} PROPERTIES PREFIX "")
+
 # 将编译的库拷贝到 bin 目录
 add_custom_command(TARGET ${plugin_Name} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${plugin_Name}> ${CMAKE_BINARY_DIR}/../bin/
